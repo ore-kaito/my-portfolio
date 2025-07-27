@@ -16,8 +16,9 @@ const posts: Post[] = [
   { id: 2, title: "サンプル投稿 2", description: "もう1つのサンプル", imagePath: "/images/test02.jpg", createdAt: "2025-07-24T18:30:00" },
 ];
 
-export default function PostDetail({ params }: any) {
-  const post = posts.find((p) => p.id === Number(params.id));
+export default async function PostDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const post = posts.find((p) => p.id === Number(id));
 
   if (!post) return notFound();
 
