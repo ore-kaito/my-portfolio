@@ -9,12 +9,18 @@ interface Post {
   createdAt: string;
 }
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
 const posts: Post[] = [
   { id: 1, title: "サンプル投稿 1", description: "これはサンプル", imagePath: "/images/default.jpg", createdAt: "2025-07-25T12:00:00" },
   { id: 2, title: "サンプル投稿 2", description: "もう1つのサンプル", imagePath: "/images/test02.jpg", createdAt: "2025-07-24T18:30:00" },
 ];
 
-export default function PostDetail({ params }: { params: { id: string } }) {
+export default function PostDetail({ params }: PageProps) {
   const post = posts.find((p) => p.id === Number(params.id));
 
   if (!post) return notFound();
