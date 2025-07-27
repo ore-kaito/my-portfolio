@@ -18,8 +18,10 @@ export default function RootLayout({
 
     <html lang='en' suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <HeaderPage />
-        {children}
+        <div className="pt-[30px] px-[60px]">
+          <HeaderPage />
+          {children}
+        </div>
         <FooterPage />
       </body>
     </html>
