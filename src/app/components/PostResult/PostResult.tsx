@@ -1,37 +1,53 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import ThreeDotMenu from "./ThreeDotMenu/ThreeDotMenu";
+
 
 interface Post {
   id: number;
   title: string;
   description: string;
   imagePath: string | null;
-  createdAt: Date;
-};
+  createdAt: string; 
+}
 
-export default async function PostResult() {
-  
+const posts: Post[] = [
+  {
+    id: 1,
+    title: "サンプル投稿 1",
+    description: "これはサンプルの説明文です。",
+    imagePath: null,
+    createdAt: "2025-07-25T12:00:00",
+  },
+  {
+    id: 2,
+    title: "サンプル投稿 2",
+    description: "もう1つのサンプル投稿です。",
+    imagePath: "/images/test02.jpg",
+    createdAt: "2025-07-24T18:30:00",
+  },
+];
 
+export default function PostResult() {
   return (
-    
     <ul className="flex flex-wrap">
-      <h1 className="text-2xl font-bold mb-4 w-full">投稿一覧</h1>
-      {/* {posts.map((post) => (
+      {posts.map((post) => (
         <div key={post.id} className="relative">
-          <Link href={`/post/${post.id}`} className="relative"> 
+          <Link href={`/post/${post.id}`} className="relative">
             <div className="border p-4 hover:bg-gray-100 cursor-pointer w-96 mr-4 mb-4">
-              <Image
-                src={post.imagePath || "/images/default.jpg"}
-                alt={post.title}
-                width={300}
-                height={200}
-                priority
-                className="h-auto w-auto"
-              />
+              <div className="flex justify-center">
+                <Image
+                  src={post.imagePath || "/images/default.jpg"}
+                  alt={post.title}
+                  width={300}
+                  height={200}
+                  priority
+                  className="h-auto w-auto"
+                />
+              </div>
+              
+
               <div>
                 <div className="flex items-center">
                   <div>
@@ -39,13 +55,15 @@ export default async function PostResult() {
                     <p className="text-sm text-gray-600">{post.description}</p>
                   </div>
                   <div className="absolute bottom-[70px] right-[34px]">
-                    <ThreeDotMenu postId={post.id} />
-                   
                   </div>
-
                 </div>
+
                 <div className="flex justify-between items-center mt-2">
-                  <FontAwesomeIcon icon={faHeart} className="text-red-500" style={{ width: "20px", height: "20px",color: "#000"}} />
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className="text-red-500"
+                    style={{ width: "20px", height: "20px", color: "#000" }}
+                  />
                   <div className="text-xs text-gray-400">
                     {new Date(post.createdAt).toLocaleString("ja-JP", {
                       year: "numeric",
@@ -58,13 +76,9 @@ export default async function PostResult() {
                 </div>
               </div>
             </div>
-            
           </Link>
-
-          
         </div>
-
-      ))} */}
+      ))}
     </ul>
   );
 }
