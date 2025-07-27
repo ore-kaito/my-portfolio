@@ -1,17 +1,14 @@
 import Image from "next/image"
 import Link from "next/link";
+import { ROUTES } from "../../../const";
 
 
-interface LogoProps {
-    show: boolean
-}
 
-export default function Logo({show} : LogoProps) {
-    if (!show) return null;
+export default function Logo() {
 
     return (
     <div>
-        <Link href="/">
+        <Link href={ROUTES.HOME}>
             <Image
                 src="/images/logo.png"
                 alt="ロゴ画像"
